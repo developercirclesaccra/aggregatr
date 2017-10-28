@@ -20,6 +20,7 @@ const EntrySchema = new mongoose.Schema({
   description: { type: String, required: 'Please provide a description', trim: true },
   upvotes: { type: Number, required: true, default: 0 },
   downvotes: { type: Number, required: true, default: 0 },
+  type: { type: String, required: true },
   comments: [CommentSchema]
 
 });
@@ -40,5 +41,5 @@ const CategorySchema = new mongoose.Schema({
 
 CategorySchema.plugin(errorHandler);
 
-module.exports = mongoose.model('Category')
+module.exports = mongoose.model('Category');
 
