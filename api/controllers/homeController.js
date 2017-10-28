@@ -4,5 +4,5 @@ function sendJsonResponse(res, status, content) {
 }
 
 module.exports.homePage = (req, res) => {
-  sendJsonResponse(res, 200, 'I work');
+  sendJsonResponse(res, 200, 'I really work');
 };
