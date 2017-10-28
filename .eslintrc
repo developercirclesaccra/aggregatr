@@ -1,0 +1,36 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": "airbnb-base",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-const-assign": "warn",
+    "no-this-before-super": "warn",
+    "no-undef": "warn",
+    "no-unreachable": "warn",
+    "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
+    "constructor-super": "warn",
+    "valid-typeof": "warn",
+    "linebreak-style": [0, "windows"],
+    "one-var" : 0,
+    "no-console": 0,
+    "no-template-curly-in-string": 0,
+    "comma-dangle": 0,
+    "func-names": 0,
+    "no-underscore-dangle": 0,
+    "radix": 0,
+    "no-use-before-define": 0,
+    "no-shadow": 0,
+    "no-restricted-globals": 0,
+    "no-param-reassign" : 0
+  }
+}
