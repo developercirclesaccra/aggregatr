@@ -41,5 +41,5 @@ const CategorySchema = new mongoose.Schema({
 
 CategorySchema.plugin(errorHandler);
 
-module.exports = mongoose.model('Category');
+module.exports = mongoose.model('Category', CategorySchema);
 
