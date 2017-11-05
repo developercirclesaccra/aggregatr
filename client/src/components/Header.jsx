@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { Segment, Image } from 'semantic-ui-react'
+import { Container, Divider, Segment, Image } from 'semantic-ui-react'
 
 class PageHeader extends Component {
   render() {
     return (
-      <Segment>
-        <Image floated='left' size='tiny' src='./images/aggregatr.png' />
-      </Segment>
+    	<Container fluid >
+      	<Segment fluid style = {{height:'60px'}}>
+        	<Image floated='right' size='small' src='./images/aggregatr.png' />
+      	</Segment>
+      	<Divider hidden />
+      	</Container>
     );
   }
 }

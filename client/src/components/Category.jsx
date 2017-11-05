@@ -6,10 +6,11 @@ class Category extends Component {
   render() {
     return (
       <Container>
-        <div>
-          <div floated='left'>{this.props.header}</div>
-          <Button floated='right' basic color='black'>More</Button>
-        </div>
+        <Button floated='right' style={{paddingDown:'50px'}} basic color='black'>More</Button>
+        
+          <div floated='left' >{this.props.header}</div>
+        
+         
         <Divider />
         <Card.Group>
         <SubCategory header='React' information='JS framework for building beautiful UIs' />

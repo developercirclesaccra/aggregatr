@@ -9,7 +9,7 @@ class HomePage extends Component {
   render() {
     return (
       <Container fluid>
-      	<Header/>
+      	<PageHeader/>
         <Category header='Javascript' />
         <Divider hidden />
         <Category header='Javascript again' />
