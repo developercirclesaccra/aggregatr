@@ -6,12 +6,12 @@ class SubCategory extends Component {
   render() {
     return (
       <Container>
-        <Button floated='right' style={{paddingDown:'50px'}} basic color='black'>More</Button>
+        <Button floated='right' basic color='black'>More</Button>
 
-          <div floated='left' >{this.props.header}</div>
+        <div floated='left' >{this.props.header}</div>
 
 
-        <Divider />
+        <Divider  clearing />
         <Card.Group fluid>
         <Article title="Getting started with React" description="Get started with the famous Javascript framework by Facebook" />
         <Article title="Component patterns in React" description="Quasi exhaustive list of the different ways to create React components" />

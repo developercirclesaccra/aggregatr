@@ -3,17 +3,15 @@ import React, { Component } from 'react';
 
 import PageHeader from '../components/Header.jsx'
 import SubCategory from '../components/subCategory.jsx'
-import WelcomeMessage from '../components/WelcomeMessage.jsx'
 
 import { Container, Divider, Button } from 'semantic-ui-react'
 
-
-class HomePage extends Component {
+class CategoryPage extends Component {
   render() {
     return (
       <Container fluid>
       	<PageHeader >
-          <WelcomeMessage />
+          <h1> {this.props.params.category} </h1>
         </PageHeader>
 
 
@@ -31,4 +29,4 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+export default CategoryPage;
