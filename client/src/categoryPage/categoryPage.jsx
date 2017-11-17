@@ -11,8 +11,11 @@ class CategoryPage extends Component {
     return (
       <Container fluid>
       	<PageHeader >
-          <h1> {this.props.params.category} </h1>
+          <h1> {this.props.match.params.category} </h1>
         </PageHeader>
+
+        <Divider hidden section/>
+        <div style ={{textAlign:'center'}} ><h1>{this.props.match.params.category} </h1></div>
 
 
         <Container fluid className='page' >

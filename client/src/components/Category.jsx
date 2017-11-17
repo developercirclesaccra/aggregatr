@@ -15,15 +15,15 @@ import {
 const Category = ({name}) => (
       <div style={{textAlign:'center',overflow:'auto'}}>
 
-        <Route to='/:category' component={HomePage} />
+
 
         <Button.Group>
-          <Button basic as={Link} to='/' component={HomePage} >Home</Button>
-          <Button basic as={Link} to='/:category' component={CategoryPage} basic>{name}</Button>
-          <Button basic as={Link} to='/:category' component={CategoryPage} basic>{name}</Button>
-          <Button basic as={Link} to='/:category' component={CategoryPage} basic>{name}</Button>
-          <Button basic as={Link} to='/:category' component={CategoryPage} basic>{name}</Button>
-          <Button basic as={Link} to='/:category' component={CategoryPage} basic>{name}</Button>
+          <Button basic >Home</Button>
+          <Button basic >{name}</Button>
+          <Button basic >{name}</Button>
+          <Button basic >{name}</Button>
+          <Button basic >{name}</Button>
+          <Button basic >{name}</Button>
         </Button.Group>
       </div>
 )

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Search, Container, Divider, Segment, Image } from 'semantic-ui-react'
+import { Search, Container, Divider, Segment, Menu, Image } from 'semantic-ui-react'
 
 import Category from '../components/Category.jsx'
 
@@ -10,22 +10,27 @@ class PageHeader extends Component {
     return (
     	<Container fluid style={{top:'0'}}>
 
-        <Container fluid style={{backgroundColor:'#ffffff', overflow:'hidden', backgroundAttachment:'fixed',zIndex: '1000', position:'fixed',top:'0px'}}>
-        	<Image style={{position:'fixed', top:'10px', right:'20px'}} size='small' src='./images/aggregatr.png' />
-          <Search style={{position:'fixed', top:'10px', left:'20px'}} />
+        <Menu borderless fluid stackable color='yellow' style={{ overflow:'hidden', backgroundAttachment:'fixed',zIndex: '1000', position:'fixed',top:'0px'}}>
 
-          <Divider fluid section hidden clearing />
-        </Container>
+          <Menu.Item>
+            <Search  />
+          </Menu.Item>
+          <Menu.Item position='right'>
+            <Image size='small' src='./images/aggregatr.png' />
+          </Menu.Item>
+
+        </Menu>
 
         <Divider fluid section hidden clearing />
+        <Divider fluid section hidden />
 
         <div style ={{textAlign:'center'}}> {this.props.children} </div>
 
         <Divider fluid section hidden clearing />
 
-        <Divider fitted />
+        <Divider />
         <Category basic name='Javascript'/>
-        <Divider fluid fitted />
+        <Divider fluid />
 
       </Container>
     );
