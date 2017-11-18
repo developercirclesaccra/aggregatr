@@ -20,9 +20,9 @@ class HomePage extends Component {
         <Container fluid className='page' >
           <Divider section hidden />
 
-          <SubCategory header='React again'/>
+          <SubCategory subcategory ='React again'/>
           <Divider hidden />
-          <SubCategory header='React'/>
+          <SubCategory subcategory ='React'/>
 
         </Container>
 

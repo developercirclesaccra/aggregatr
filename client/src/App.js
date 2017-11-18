@@ -6,6 +6,7 @@ import { Container, Divider } from 'semantic-ui-react'
 
 import HomePage from './homepage/homepage.jsx';
 import CategoryPage from './categoryPage/categoryPage.jsx';
+import SubCategoryPage from './subCategoryPage/subCategoryPage.jsx';
 
 import {
   BrowserRouter as Router,
@@ -27,11 +28,15 @@ class App extends Component {
   render() {
     return (
       <Router>
+        <div>
         <Switch>
           <Route exact path="/" component={HomePage}/>
           <Route exact path="/home" component={HomePage}/>
-          <Route path="/:category" component={CategoryPage}/>
+          <Route exact path="/:category" component={CategoryPage}/>
+          <Route exact path="/:category/:subcategory" component={SubCategoryPage}/>
         </Switch>
+        <Route path="/" component={PageFooter}/>
+      </div>
       </Router>
     );
   }

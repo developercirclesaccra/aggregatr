@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Search, Container, Divider, Segment, Menu, Image } from 'semantic-ui-react'
 
+import {Link} from 'react-router-dom'
+
 import Category from '../components/Category.jsx'
 
 
@@ -16,7 +18,7 @@ class PageHeader extends Component {
             <Search  />
           </Menu.Item>
           <Menu.Item position='right'>
-            <Image size='small' src='./images/aggregatr.png' />
+            <Image as={Link} to="/" size='small' src='./images/aggregatr.png' />
           </Menu.Item>
 
         </Menu>

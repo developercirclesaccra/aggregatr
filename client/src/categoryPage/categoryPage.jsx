@@ -15,15 +15,13 @@ class CategoryPage extends Component {
         </PageHeader>
 
         <Divider hidden section/>
-        <div style ={{textAlign:'center'}} ><h1>{this.props.match.params.category} </h1></div>
-
 
         <Container fluid className='page' >
           <Divider section hidden />
 
-          <SubCategory header='React again'/>
+          <SubCategory subcategory ='React again'/>
           <Divider hidden />
-          <SubCategory header='React'/>
+          <SubCategory subcategory ='React'/>
 
         </Container>
 

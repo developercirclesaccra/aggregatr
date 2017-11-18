@@ -4,7 +4,7 @@ import { Button, Card, Image, Label, Menu, Icon } from 'semantic-ui-react'
 class Article extends Component {
   render() {
     return (
-      <Card>
+      <Card fluid>
       	<Card.Content>
         	<Image floated='left' size='small' src='./images/codLogoo.jpg' />
         	<Card.Header>
