@@ -5,6 +5,8 @@ const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const graphhttp = require('express-graphql');
+const Schema = require('./api/models/GraphqlSchema');
 
 
 const apiRoutes = require('./api/routes/index');
@@ -15,6 +17,14 @@ const app = express();
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
+app.use(
+  '/graphiql',
+  graphhttp({
+    schema: Schema,
+    pretty: true,
+    graphiql: true
+  })
+);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
