@@ -4,7 +4,7 @@ const Faker = require('faker');
 
 const Schema = require('./Schema');
 
-const Connection = new Sequelize(process.env.DATABASE);
+const Connection = new Sequelize(process.env.DATABASE_URL);
 
 const Category = Connection.define('category', Schema.Category);
 const SubCategory = Connection.define('subcategory', Schema.SubCategory);
