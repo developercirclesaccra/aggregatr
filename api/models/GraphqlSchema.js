@@ -1,9 +1,10 @@
-const graphql = require("graphql");
-const Seq = require("./db");
+
+const graphql = require('graphql');
+const Seq = require('./db');
 
 const Category = new graphql.GraphQLObjectType({
-  name: "Category",
-  description: "This represents a Category",
+  name: 'Category',
+  description: 'This represents a Category',
   fields() {
     return {
       id: {
@@ -29,8 +30,8 @@ const Category = new graphql.GraphQLObjectType({
 });
 
 const SubCategory = new graphql.GraphQLObjectType({
-  name: "Subcategory",
-  description: "This represents a Subcategory",
+  name: 'Subcategory',
+  description: 'This represents a Subcategory',
   fields() {
     return {
       id: {
@@ -56,8 +57,8 @@ const SubCategory = new graphql.GraphQLObjectType({
 });
 
 const Entry = new graphql.GraphQLObjectType({
-  name: "Entry",
-  description: "This represents an Entry",
+  name: 'Entry',
+  description: 'This represents an Entry',
   fields() {
     return {
       id: {
@@ -107,8 +108,8 @@ const Entry = new graphql.GraphQLObjectType({
 });
 
 const Comment = new graphql.GraphQLObjectType({
-  name: "Comment",
-  description: "This represents a comment",
+  name: 'Comment',
+  description: 'This represents a comment',
   fields() {
     return {
       id: {
@@ -134,8 +135,8 @@ const Comment = new graphql.GraphQLObjectType({
 });
 
 const Query = new graphql.GraphQLObjectType({
-  name: "Query",
-  description: "This is a root query",
+  name: 'Query',
+  description: 'This is a root query',
   fields() {
     return {
       categories: {
@@ -201,8 +202,8 @@ const Query = new graphql.GraphQLObjectType({
 });
 
 const Mutation = new graphql.GraphQLObjectType({
-  name: "Mutation",
-  description: "Functions to create stuff",
+  name: 'Mutation',
+  description: 'Functions to create stuff',
   fields() {
     return {
       addCategory: {
@@ -231,15 +232,10 @@ const Mutation = new graphql.GraphQLObjectType({
         resovle(_, args) {
           return Seq.models.category
             .findOne({
-              where: {
-                name: args.categoryname
-              }
+              where: { name: args.categoryname },
+              include: [{ model: Seq.models.subcategory }]
             })
-            .then(category =>
-              category.createSubcategory({
-                name: args.name
-              })
-            );
+            .then(category => category.createSubcategory({ name: args.name }));
         }
       },
       addComment: {
