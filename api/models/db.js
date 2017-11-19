@@ -1,17 +1,64 @@
-const mongoose = require('mongoose');
+const Sequelize = require('sequelize');
 
-mongoose.Promise = global.Promise;
+const Faker = require('faker');
 
-const dbURI = process.env.DBRUI;
-mongoose.connect(dbURI);
+const Schema = require('./Schema');
 
-mongoose.connection.on('connected', () => {
-  console.log('Connected to ', dbURI);
-});
-mongoose.connection.on('error', (err) => {
-  console.error(`Error connecting to ${dbURI} : ${err}`);
-});
+const Connection = new Sequelize(process.env.DATABASE);
 
-mongoose.connection.on('disconnected', ()=> {
-  console.log('Disconnected from ', dbURI);
-});
+const Category = Connection.define('category', Schema.Category);
+const SubCategory = Connection.define('subcategory', Schema.SubCategory);
+const Entry = Connection.define('entry', Schema.Entry);
+const Comment = Connection.define('comment', Schema.Comment);
+const User = Connection.define('User', Schema.User);
+
+
+/* relationships */
+Category.hasMany(SubCategory);
+SubCategory.belongsTo(Category);
+SubCategory.hasMany(Entry);
+User.hasMany(Entry);
+User.hasMany(Comment);
+Entry.belongsTo(SubCategory);
+Entry.hasMany(Comment);
+Comment.belongsTo(Entry);
+
+/* end */
+
+const Auth = (async () => {
+  try {
+    await Connection.authenticate();
+    await console.log('Connected to db');
+    await Connection.sync({ force: true });
+    for (let i = 0; i <= 9; i++) {
+      await Category.create({
+        name: Faker.address.country()
+      })
+        .then(category => category.createSubcategory({
+          name: Faker.address.city()
+        }))
+        .then(subcategory => subcategory.createEntry({
+          author: `${Faker.name.firstName()} ${Faker.name.lastName()}`,
+          title: Faker.name.title(),
+          description: Faker.lorem.sentences(),
+          upvotes: Faker.random.number({
+            min: 5,
+            max: 50
+          }),
+          downvotes: Faker.random.number({
+            min: 5,
+            max: 50
+          })
+        }))
+        .then(entry => entry.createComment({
+          author: `${Faker.name.firstName()} ${Faker.name.lastName()}`,
+          comment: Faker.lorem.sentence()
+        }));
+    }
+  } catch (error) {
+    console.error(error);
+  }
+})();
+
+module.exports = Connection;
+

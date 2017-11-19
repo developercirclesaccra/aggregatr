@@ -5,30 +5,31 @@ const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const graphhttp = require('express-graphql');
+const Schema = require('./api/models/GraphqlSchema');
 
-require('./api/models/db');
 
-const index = require('./routes/index');
-const users = require('./routes/users');
 const apiRoutes = require('./api/routes/index');
 
 const app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
+app.use(
+  '/graphiql',
+  graphhttp({
+    schema: Schema,
+    pretty: true,
+    graphiql: true
+  })
+);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
 app.use('/api', apiRoutes);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
