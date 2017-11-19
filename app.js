@@ -6,7 +6,6 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-require('./api/models/db');
 
 const apiRoutes = require('./api/routes/index');
 
