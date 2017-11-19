@@ -6,6 +6,9 @@
     "start": "node ./bin/www",
     "seed": "node ./api/Seed.js postgres"
   },
+  "engines": {
+    "node": "8.5.0"
+  },
   "dependencies": {
     "apollo-server-express": "^1.2.0",
     "body-parser": "^1.17.2",
