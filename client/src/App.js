@@ -7,6 +7,7 @@ import { Container, Divider } from 'semantic-ui-react'
 import HomePage from './homepage/homepage.jsx';
 import CategoryPage from './categoryPage/categoryPage.jsx';
 import SubCategoryPage from './subCategoryPage/subCategoryPage.jsx';
+import RessourcePage from './ressourcePage/ressourcePage.jsx';
 
 import {
   BrowserRouter as Router,
@@ -16,7 +17,7 @@ import {
 } from 'react-router-dom'
 
 const PageFooter = () => (
-  <div style ={{textAlign:'center'}}>
+  <div style ={{textAlign:'center',marginDown:'0'}}>
     <Divider section hidden />
     <Divider style={{width:'70%',margin:'auto'}}/>
     <div style={{color:'rgb(126, 126, 126)'}}>AggregatR</div>
@@ -32,8 +33,9 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={HomePage}/>
           <Route exact path="/home" component={HomePage}/>
-          <Route exact path="/:category" component={CategoryPage}/>
-          <Route exact path="/:category/:subcategory" component={SubCategoryPage}/>
+          <Route exact path="/cat=:category" component={CategoryPage}/>
+          <Route exact path="/cat=:category/sub=:subcategory" component={SubCategoryPage}/>
+          <Route exact path="/res=:ressource" component={RessourcePage}/>
         </Switch>
         <Route path="/" component={PageFooter}/>
       </div>

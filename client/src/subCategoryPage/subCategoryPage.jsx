@@ -5,6 +5,10 @@ import PageHeader from '../components/Header.jsx'
 import SubCategory from '../components/subCategory.jsx'
 import Article from '../components/Article.jsx'
 
+import {
+  Link
+} from 'react-router-dom'
+
 import { Container, Divider, Button, Menu, Grid } from 'semantic-ui-react'
 
 class SubCategoryPage extends Component {
@@ -20,11 +24,11 @@ class SubCategoryPage extends Component {
         <Container fluid className='page' style={{overflow:'hidden'}}>
 
           <Menu text pointing secondary style={{width:'70%',margin:'auto'}}>
-            <Menu.Item name={this.props.match.params.subcategory} active={true}  />
-            <Menu.Item name='angularJS' />
-            <Menu.Item name='viewJS'  />
-            <Menu.Item name='meteorJS' />
-            <Menu.Item name='NodeJS' />
+            <Menu.Item as={Link} to={"/cat=Javascript/sub="+this.props.match.params.subcategory} name={this.props.match.params.subcategory} active={true}  />
+            <Menu.Item as={Link} to="/cat=Javascript/sub=angularJS" name='angularJS' />
+            <Menu.Item as={Link} to="/cat=Javascript/sub=viewJS" name='viewJS'  />
+            <Menu.Item as={Link} to="/cat=Javascript/sub=meteorJS" name='meteorJS' />
+            <Menu.Item as={Link} to="/cat=Javascript/sub=NodeJS" name='NodeJS' />
           </Menu>
 
           <Divider section hidden />

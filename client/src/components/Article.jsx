@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
+
 import { Button, Card, Image, Label, Menu, Icon } from 'semantic-ui-react'
+
+import {
+  Link
+} from 'react-router-dom'
 
 class Article extends Component {
   render() {
     return (
-      <Card fluid>
-      	<Card.Content>
+      <Card fluid >
+      	<Card.Content as={Link} to={"res="+this.props.title}>
         	<Image floated='left' size='small' src='./images/codLogoo.jpg' />
         	<Card.Header>
         	  {this.props.title}
@@ -25,9 +30,11 @@ class Article extends Component {
               <Icon name='thumbs outline down' />
               <Label color='red' floating>22</Label>
             </Menu.Item>
-            <Menu.Item >
+
+            <Menu.Item as="a" href="https://github.com/developercirclesaccra/aggregatr">
               <Button basic color='teal' >Read</Button>
             </Menu.Item>
+
           </Menu>
         </Card.Content>
     </Card>

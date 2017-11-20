@@ -19,11 +19,11 @@ const Category = ({name}) => (
 
         <Button.Group>
           <Button as={Link} to='/' basic >Home</Button>
-          <Button as={Link} to={'/'+name} basic >{name}</Button>
-          <Button as={Link} to={'/'+name} basic >{name}</Button>
-          <Button as={Link} to={'/'+name} basic >{name}</Button>
-          <Button as={Link} to={'/'+name} basic >{name}</Button>
-          <Button as={Link} to={'/'+name} basic >{name}</Button>
+          <Button as={Link} to={'/cat='+name} basic >{name}</Button>
+          <Button as={Link} to={'/cat='+name} basic >{name}</Button>
+          <Button as={Link} to={'/cat='+name} basic >{name}</Button>
+          <Button as={Link} to={'/cat='+name} basic >{name}</Button>
+          <Button as={Link} to={'/cat='+name} basic >{name}</Button>
         </Button.Group>
       </div>
 )

@@ -9,7 +9,7 @@ class SubCategory extends Component {
   render() {
     return (
       <Container>
-        <Button floated='right' as={Link} to={"/Javascript/" + this.props.subcategory} basic color='black'>More</Button>
+        <Button floated='right' as={Link} to={"/cat=Javascript/sub=" + this.props.subcategory} basic color='black'>More</Button>
 
         <div floated='left' >{this.props.subcategory}</div>
 

@@ -3,7 +3,8 @@ import { Search, Container, Divider, Segment, Menu, Image } from 'semantic-ui-re
 
 import {Link} from 'react-router-dom'
 
-import Category from '../components/Category.jsx'
+import Category from './Category.jsx'
+import PureHeader from './pureHeader.jsx'
 
 
 
@@ -12,16 +13,7 @@ class PageHeader extends Component {
     return (
     	<Container fluid style={{top:'0'}}>
 
-        <Menu borderless fluid stackable color='yellow' style={{ overflow:'hidden', backgroundAttachment:'fixed',zIndex: '1000', position:'fixed',top:'0px'}}>
-
-          <Menu.Item>
-            <Search  />
-          </Menu.Item>
-          <Menu.Item position='right'>
-            <Image as={Link} to="/" size='small' src='./images/aggregatr.png' />
-          </Menu.Item>
-
-        </Menu>
+        <PureHeader/>
 
         <Divider fluid section hidden clearing />
         <Divider fluid section hidden />
