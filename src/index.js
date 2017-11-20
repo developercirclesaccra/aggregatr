@@ -14,7 +14,7 @@ const cors = require('cors');
 const connectMongo = require('./mongo-connector');
 
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // 2
 const start = async () => {
