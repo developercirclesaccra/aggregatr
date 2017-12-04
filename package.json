@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./src/index.js",
+    "start": "node ./bin/www",
     "seed": "node ./api/Seed.js postgres"
   },
   "engines": {
