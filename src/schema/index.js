@@ -15,8 +15,8 @@ type Technology {
 }
 
 type Query {
-  allLanguages: [Language!]!
-  allTechnologies: [Technology!]!
+  allLanguages(id:Int, name:String): [Language!]!
+  allTechnologies(id:Int, name:String): [Technology!]!
 }
 
 type Mutation {

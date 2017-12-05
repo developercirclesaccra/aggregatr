@@ -14,9 +14,9 @@ module.exports = {
   },
   Query: {
     allLanguages: async (parent, args, { models: { Language } }) =>
-      Language.findAll(),
+      Language.findAll({where: args }),
     allTechnologies: async (parent, args, { models: { Technology } }) =>
-      Technology.findAll()
+      Technology.findAll({ where: args })
   },
   Language: {
     technologies: language => language.getTechnologies(),
