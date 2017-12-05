@@ -5,5 +5,10 @@ module.exports = (sequelize, Datatypes) => {
     }
   });
 
+  Language.associate = (models) => {
+    Language.hasMany(models.Technology);
+    models.Technology.belongsTo(Language);
+  };
+
   return Language;
 };
