@@ -8,6 +8,8 @@ const sequelize = new Sequelize('test_graphql_db', 'postgres', 'root', {
 const db = {
   Language: sequelize.import('./Language'),
   Technology: sequelize.import('./Technology'),
+  User: sequelize.import('./User'),
+  Link: sequelize.import('./Link');
 };
 
 
