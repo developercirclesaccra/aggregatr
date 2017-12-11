@@ -60,6 +60,34 @@ module.exports = {
           technologyId: technology.id
         };
         return $user.createLink(link);
+      }),
+    createVote: requiresAuth
+      .createResolver(async (parent, args, { user, models: { User, Link } }) => {
+        const $user = await User.findOne({ where: { id: user.id } });
+        const link = await Link.findOne({ where: { id: args.linkId } });
+        const vote = {
+          vote: args.vote,
+          userId: $user.id,
+        };
+        return link.createVote(vote);
+      }),
+    createComment: requiresAuth
+      .createResolver(async (parent, args, { user, models: { User, Link } }) => {
+        const $user = await User.findOne({ where: { id: user.id } });
+        const link = await Link.findOne({ where: { id: args.linkId } });
+        const comment = {
+          comment: args.comment,
+          userId: $user.id,
+        };
+        return link.createComment(comment);
+      }),
+    updateUser: requiresAuth
+      .createResolver(async (parent, args, { user, models: { User } }) => {
+        const updatedUser = args;
+        const $user = await User.findAndUpdate(updatedUser, { where: { id: user.id } });
+        // await $user.update();
+        // await $user.save(updatedUser);
+        return $user;
       })
   },
   Query: {
@@ -75,17 +103,30 @@ module.exports = {
     },
     allUsers: requiresAdmin.createResolver(async (parent, args, { models: { User } }) =>
       User.findAll({ where: args })),
-    allLinks: requiresAuth.createResolver(async (parent, args, { models: { Link } }) => {
-      Link.findAll();
-    })
+    allLinks: requiresAuth.createResolver(async (parent, args, { models: { Link } }) =>
+      Link.findAll())
   },
   Language: {
     technologies: language => language.getTechnologies()
   },
   User: {
-    links: user => user.getLinks()
+    links: user => user.getLinks(),
+    myVotes: user => user.getVotes(),
   },
   Technology: {
     links: technology => technology.getLinks()
+  },
+  Link: {
+    votes: link => link.getVotes(),
+    comments: link => link.getComments(),
+  },
+  Vote: {
+    user: async (parent, args, { models: { User } }) =>
+      await User.findOne({ where: { id: parent.userId } })
+  },
+  Comment: {
+    author: async (parent, args, { models: { User } }) =>
+      await User.findOne({ where: { id: parent.userId } })
+
   }
 };

@@ -14,9 +14,10 @@ module.exports = (sequelize, Datatypes) => {
     }
   });
 
-  // Link.associate = (models) => {
-
-  // }
+  Link.associate = (models) => {
+    Link.hasMany(models.Vote);
+    Link.hasMany(models.Comment);
+  };
   return Link;
 };
 

@@ -25,7 +25,9 @@ module.exports = (sequelize, Datatypes) => {
 
   User.associate = (models) => {
     User.hasMany(models.Link);
+    User.hasMany(models.Vote);
     models.Link.belongsTo(User);
+    User.hasMany(models.Comment);
   };
 
   return User;
