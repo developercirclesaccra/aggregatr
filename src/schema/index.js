@@ -67,5 +67,9 @@ type Mutation {
   createComment(linkId:Int!, comment:String!): Comment!
 }
 
+type Subscription {
+  userAdded: User!
+}
+
 `;
 export default makeExecutableSchema({ typeDefs, resolvers });

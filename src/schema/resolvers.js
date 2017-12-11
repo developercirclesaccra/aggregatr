@@ -1,9 +1,18 @@
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import _ from 'lodash';
+import { PubSub } from 'graphql-subscriptions';
 import { requiresAuth, requiresAdmin } from './permissions';
 
+const pubsub = new PubSub();
+const USER_ADDED = 'USER_ADDED';
+
 module.exports = {
+  Subscription: {
+    userAdded: {
+      subscribe: () => pubsub.asyncIterator(USER_ADDED)
+    }
+  },
   Mutation: {
     createLanguage: requiresAdmin.createResolver((parent, args, { models: { Language } }) =>
       Language.create(args)),
@@ -28,7 +37,9 @@ module.exports = {
       user.hash = crypto
         .pbkdf2Sync(args.password, user.salt, 1000, 64, 'sha512')
         .toString('hex');
-      return User.create(user);
+      const $user = User.create(user);
+      pubsub.publish(USER_ADDED, {userAdded: $user });
+      return $user;
     },
     login: async (parent, args, { models: { User }, SECRET }) => {
       const user = await User.findOne({ where: { email: args.email } });

@@ -35,6 +35,7 @@
     "no-await-in-loop": 0,
     "no-loop-func": 0,
     "no-return-await": 0,
-    "camelcase": 0
+    "camelcase": 0,
+    "no-new": 0
   }
 }

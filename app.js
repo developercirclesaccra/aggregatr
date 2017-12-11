@@ -1,8 +1,10 @@
-
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
+import { createServer } from 'http';
+import { execute, subscribe } from 'graphql';
+import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
 import schema from './src/schema';
 import models from './src/models/db';
@@ -31,14 +33,30 @@ app.use(addUser);
 app.use(
   '/graphiql',
   graphiqlExpress({
-    endpointURL: '/graphql'
+    endpointURL: '/graphql',
+    subscriptionsEndpoint: 'ws://localhost:3700/subscriptions',
   })
 );
 
 app.use(
   '/graphql',
   bodyParser.json(),
-  graphqlExpress(req => ({ schema, context: { models, SECRET, user: req.user } }))
+  graphqlExpress(req => ({
+    schema,
+    context: { models, SECRET, user: req.user }
+  }))
 );
 
-models.sequelize.sync().then(() => app.listen(3700));
+const server = createServer(app);
+
+models.sequelize.sync().then(() =>
+  server.listen(3700, () => {
+    new SubscriptionServer(
+      {
+        execute,
+        subscribe,
+        schema
+      },
+      { server, path: './subscriptions' }
+    );
+  }));
