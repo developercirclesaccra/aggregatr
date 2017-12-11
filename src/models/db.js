@@ -9,7 +9,7 @@ const db = {
   Language: sequelize.import('./Language'),
   Technology: sequelize.import('./Technology'),
   User: sequelize.import('./User'),
-  Link: sequelize.import('./Link');
+  Link: sequelize.import('./Link')
 };
 
 

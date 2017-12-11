@@ -1,11 +1,13 @@
+
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import jwt from 'jsonwebtoken';
+import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
+import schema from './src/schema';
+import models from './src/models/db';
+
 require('dotenv').config();
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const schema = require('./src/schema');
-const { graphiqlExpress, graphqlExpress } = require('apollo-server-express');
-const models = require('./src/models/db');
-const jwt = require('jsonwebtoken');
 
 const { SECRET } = process.env;
 
@@ -39,4 +41,4 @@ app.use(
   graphqlExpress(req => ({ schema, context: { models, SECRET, user: req.user } }))
 );
 
-models.sequelize.sync({ force: true }).then(() => app.listen(3000));
+models.sequelize.sync().then(() => app.listen(3700));

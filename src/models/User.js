@@ -11,6 +11,10 @@ module.exports = (sequelize, Datatypes) => {
         isEmail: true
       }
     },
+    isAdmin: {
+      type: Datatypes.BOOLEAN,
+      defaultValue: false,
+    },
     salt: {
       type: Datatypes.TEXT
     },
@@ -19,5 +23,11 @@ module.exports = (sequelize, Datatypes) => {
     }
   });
 
+  User.associate = (models) => {
+    User.hasMany(models.Link);
+    models.Link.belongsTo(User);
+  };
+
   return User;
 };
+
